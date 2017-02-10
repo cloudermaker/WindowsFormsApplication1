@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Bien" EntityType="Model.Store.Bien" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Commande" EntityType="Model.Store.Commande" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Pays" EntityType="Model.Store.Pays" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personne" EntityType="Model.Store.Personne" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="Model.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Bien">
+          <Key>
+            <PropertyRef Name="id_bien" />
+          </Key>
+          <Property Name="id_bien" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="commentaire" Type="text" />
+          <Property Name="d_cre" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Commande">
+          <Key>
+            <PropertyRef Name="id_cmd" />
+          </Key>
+          <Property Name="id_cmd" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_pers" Type="int" Nullable="false" />
+          <Property Name="id_bien" Type="int" Nullable="false" />
+          <Property Name="quantite" Type="int" Nullable="false" />
+          <Property Name="d_cre" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Pays">
+          <Key>
+            <PropertyRef Name="id_pays" />
+          </Key>
+          <Property Name="id_pays" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom_pays" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="d_cre" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="id_pers" />
+          </Key>
+          <Property Name="id_pers" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="age" Type="int" />
+          <Property Name="d_cre" Type="datetime" />
+          <Property Name="prenom" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="Entities">
+          <EntitySet Name="Bien" EntityType="Model.Bien" />
+          <EntitySet Name="Commande" EntityType="Model.Commande" />
+          <EntitySet Name="Pays" EntityType="Model.Pays" />
+          <EntitySet Name="Personne" EntityType="Model.Personne" />
+          <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
+        </EntityContainer>
+        <EntityType Name="Bien">
+          <Key>
+            <PropertyRef Name="id_bien" />
+          </Key>
+          <Property Name="id_bien" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="commentaire" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="d_cre" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Commande">
+          <Key>
+            <PropertyRef Name="id_cmd" />
+          </Key>
+          <Property Name="id_cmd" Type="Int32" Nullable="false" />
+          <Property Name="id_pers" Type="Int32" Nullable="false" />
+          <Property Name="id_bien" Type="Int32" Nullable="false" />
+          <Property Name="quantite" Type="Int32" Nullable="false" />
+          <Property Name="d_cre" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Pays">
+          <Key>
+            <PropertyRef Name="id_pays" />
+          </Key>
+          <Property Name="id_pays" Type="Int32" Nullable="false" />
+          <Property Name="nom_pays" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="d_cre" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="id_pers" />
+          </Key>
+          <Property Name="id_pers" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="d_cre" Type="DateTime" />
+          <Property Name="prenom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Bien">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Bien)">
+              <MappingFragment StoreEntitySet="Bien">
+                <ScalarProperty Name="id_bien" ColumnName="id_bien" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="commentaire" ColumnName="commentaire" />
+                <ScalarProperty Name="d_cre" ColumnName="d_cre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Commande">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Commande)">
+              <MappingFragment StoreEntitySet="Commande">
+                <ScalarProperty Name="id_cmd" ColumnName="id_cmd" />
+                <ScalarProperty Name="id_pers" ColumnName="id_pers" />
+                <ScalarProperty Name="id_bien" ColumnName="id_bien" />
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="d_cre" ColumnName="d_cre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pays">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Pays)">
+              <MappingFragment StoreEntitySet="Pays">
+                <ScalarProperty Name="id_pays" ColumnName="id_pays" />
+                <ScalarProperty Name="nom_pays" ColumnName="nom_pays" />
+                <ScalarProperty Name="d_cre" ColumnName="d_cre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personne">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Personne)">
+              <MappingFragment StoreEntitySet="Personne">
+                <ScalarProperty Name="id_pers" ColumnName="id_pers" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="d_cre" ColumnName="d_cre" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.sysdiagrams)">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="Model.Bien" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Commande" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Pays" Width="1.5" PointX="0.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Personne" Width="1.5" PointX="2.75" PointY="3.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333333" IsExpanded="true" /></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
